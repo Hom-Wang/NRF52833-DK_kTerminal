@@ -40,7 +40,7 @@ void bsp_system_information( device_info_t *ds )
     klogd("UUID: %04X%04X\n", (uint32_t)(KS_UUID64() >> 32), KS_UUID32());
     klogd("Mode: %d\n", ds->mode);
     klogd("Baudrate: %d bps\n", ds->baudrate);
-    klogd("updaterate: %d Hz\n", ds->updaterate);
+    klogd("Updaterate: %d Hz\n", ds->updaterate);
 }
 
 void bsp_gpio_init( void )

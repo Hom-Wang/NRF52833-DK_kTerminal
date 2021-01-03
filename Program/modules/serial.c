@@ -81,7 +81,7 @@ void Serial_Cmd( uint32_t state )
 void Serial_SetBaudrate( uint32_t baudrate )
 {
     uint32_t state = KS_CLOSE;
-    if (UART_Check(&hserial) == ENABLE)
+    if (UART_Check(&hserial) == 0x04)
     {
         state = KS_OPEN;
         Serial_Cmd(DISABLE);
@@ -92,6 +92,7 @@ void Serial_SetBaudrate( uint32_t baudrate )
     {
         Serial_Cmd(ENABLE);
     }
+    UART_EVENTS_RXDRDY(hserial.Instance) = RESET;
 }
 
 /**

@@ -61,6 +61,20 @@ int main( void )
         if (tick >= (TICK_FREQ / dv.updaterate))
         {
             tick = 0;
+            LED_1_Toggle();
+
+            if (dv.mode)
+            {
+                LED_2_Toggle();
+                int16_t lsb[2] = {0};
+                lsb[0] = sec;
+                lsb[1] = msc * (1000.0f / TICK_FREQ);
+                kSerial_SendPacket(NULL, lsb, 2, KS_I16);
+            }
+            else
+            {
+                LED_2_Off();
+            }
         }
     }
 }
@@ -81,7 +95,6 @@ static uint32_t lens;
 static uint32_t type;
 void event_uart_serial_recv( void )
 {
-    LED_3_Toggle();
     uint8_t input = Serial_RecvByte();
 #if 1
     if (kSerial_RecvPacket(input, param, rdata, &lens, &type) == KS_OK)
@@ -99,20 +112,35 @@ void KSCommand( uint32_t type, uint8_t param[2], uint32_t lens, uint8_t *rdata )
     switch (type)
     {
         // system command
+        // KSCMD_R0_DEVICE_ID           0xD0
+        // KSCMD_R0_DEVICE_BAUDRATE     0xD1
+        // KSCMD_R0_DEVICE_RATE         0xD2
+        // KSCMD_R0_DEVICE_MDOE         0xD3
+        // KSCMD_R0_DEVICE_GET          0xE3
         case KS_R0:
         {
             if ((param[0] == KSCMD_R0_DEVICE_ID) && (param[1] == 0x00))
             {
                 kSerial_SendCommand(KS_R0, dv.id, dv.id >> 8, NULL);
             }
-            else if (param[0] == KSCMD_R0_DEVICE_BAUDRATE)
+            else if ((param[0] == KSCMD_R0_DEVICE_BAUDRATE) && (param[1] == 4))
             {
-                // Serial_SetBaudrate
-//                dv.baudrate
+                uint32_t baudrate = *(uint32_t*)rdata;
+                uint32_t value = UART_Baudrate2RegValue(baudrate);
+                if (value != 0)
+                {
+                    if (dv.baudrate != baudrate)
+                    {
+                        dv.baudrate = baudrate;
+                        Serial_SetBaudrate(value);
+                        klogd("  set baudrate %d bps\n", dv.baudrate);
+                    }
+                }
             }
-            else if (param[0] == KSCMD_R0_DEVICE_RATE)
+            else if ((param[0] == KSCMD_R0_DEVICE_RATE) && (param[1] == 4))
             {
-//                dv.updaterate
+                dv.updaterate = *(uint32_t*)rdata;
+                klogd("  set updaterate %d hz\n", dv.updaterate);
             }
             else if (param[0] == KSCMD_R0_DEVICE_MDOE)
             {

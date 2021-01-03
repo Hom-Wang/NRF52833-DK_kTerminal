@@ -299,7 +299,7 @@ uint32_t UART_Baudrate2RegValue( uint32_t baudrate )
             return BAUDRATE_REGVAL[i][1];
         }
     }
-    return NRF_UART_BAUDRATE_115200;
+    return 0;
 }
 
 /*************************************** END OF FILE ****************************************/
