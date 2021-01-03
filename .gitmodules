@@ -2,3 +2,6 @@
 	path = Program/kitsprout/kserial
 	url = https://github.com/KitSprout/kSerial.git
 	branch = v1.0-updateing
+[submodule "Program/drivers/simui2c"]
+	path = Program/drivers/simui2c
+	url = https://github.com/Hom-Wang/SoftwareI2C.git
