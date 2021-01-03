@@ -22,24 +22,24 @@
 
 const uint32_t BAUDRATE_REGVAL[18][2] = 
 {
-       1200,    NRF_UART_BAUDRATE_1200,     //   1200 baud (actual rate: 1205)
-       2400,    NRF_UART_BAUDRATE_2400,     //   2400 baud (actual rate: 2396)
-       4800,    NRF_UART_BAUDRATE_4800,     //   4800 baud (actual rate: 4808)
-       9600,    NRF_UART_BAUDRATE_9600,     //   9600 baud (actual rate: 9598)
-      14400,    NRF_UART_BAUDRATE_14400,    //  14400 baud (actual rate: 14414)
-      19200,    NRF_UART_BAUDRATE_19200,    //  19200 baud (actual rate: 19208)
-      28800,    NRF_UART_BAUDRATE_28800,    //  28800 baud (actual rate: 28829)
-      31250,    NRF_UART_BAUDRATE_31250,    //  31250 baud
-      38400,    NRF_UART_BAUDRATE_38400,    //  38400 baud (actual rate: 38462)
-      56000,    NRF_UART_BAUDRATE_56000,    //  56000 baud (actual rate: 55944)
-      57600,    NRF_UART_BAUDRATE_57600,    //  57600 baud (actual rate: 57762)
-      76800,    NRF_UART_BAUDRATE_76800,    //  76800 baud (actual rate: 76923)
-     115200,    NRF_UART_BAUDRATE_115200,   // 115200 baud (actual rate: 115942)
-     230400,    NRF_UART_BAUDRATE_230400,   // 230400 baud (actual rate: 231884)
-     250000,    NRF_UART_BAUDRATE_250000,   // 250000 baud
-     460800,    NRF_UART_BAUDRATE_460800,   // 460800 baud (actual rate: 470588)
-     921600,    NRF_UART_BAUDRATE_921600,   // 921600 baud (actual rate: 941176)
-    1000000,    NRF_UART_BAUDRATE_1000000   // 1 Mega baud
+       1200,    NRF_UART_BAUDRATE_1200,     //   1200 baud (actual rate: 1205)      ... 0.995
+       2400,    NRF_UART_BAUDRATE_2400,     //   2400 baud (actual rate: 2396)      ... 1.001
+       4800,    NRF_UART_BAUDRATE_4800,     //   4800 baud (actual rate: 4808)      ... 0.998
+       9600,    NRF_UART_BAUDRATE_9600,     //   9600 baud (actual rate: 9598)      ... 1.000
+      14400,    NRF_UART_BAUDRATE_14400,    //  14400 baud (actual rate: 14414)     ... 0.999
+      19200,    NRF_UART_BAUDRATE_19200,    //  19200 baud (actual rate: 19208)     ... 0.999
+      28800,    NRF_UART_BAUDRATE_28800,    //  28800 baud (actual rate: 28829)     ... 0.998
+      31250,    NRF_UART_BAUDRATE_31250,    //  31250 baud                          ... 1.000
+      38400,    NRF_UART_BAUDRATE_38400,    //  38400 baud (actual rate: 38462)     ... 0.998
+      56000,    NRF_UART_BAUDRATE_56000,    //  56000 baud (actual rate: 55944)     ... 1.001
+      57600,    NRF_UART_BAUDRATE_57600,    //  57600 baud (actual rate: 57762)     ... 0.997
+      76800,    NRF_UART_BAUDRATE_76800,    //  76800 baud (actual rate: 76923)     ... 0.998
+     115200,    NRF_UART_BAUDRATE_115200,   // 115200 baud (actual rate: 115942)    ... 0.993
+     230400,    NRF_UART_BAUDRATE_230400,   // 230400 baud (actual rate: 231884)    ... 0.993
+     250000,    NRF_UART_BAUDRATE_250000,   // 250000 baud                          ... 1.000
+     460800,    NRF_UART_BAUDRATE_460800,   // 460800 baud (actual rate: 470588)    ... 0.979
+     921600,    NRF_UART_BAUDRATE_921600,   // 921600 baud (actual rate: 941176)    ... 0.979
+    1000000,    NRF_UART_BAUDRATE_1000000   // 1 Mega baud                          ... 1.000
 };
 
 /* Prototypes ------------------------------------------------------------------------------*/
