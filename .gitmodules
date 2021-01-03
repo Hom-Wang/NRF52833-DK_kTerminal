@@ -1,0 +1,4 @@
+[submodule "Program/kitsprout/kserial"]
+	path = Program/kitsprout/kserial
+	url = https://github.com/KitSprout/kSerial.git
+	branch = v1.0-updateing
