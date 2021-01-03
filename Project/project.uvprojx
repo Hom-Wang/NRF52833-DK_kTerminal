@@ -426,7 +426,7 @@
             <File>
               <FileName>nrf5x_i2cSimu.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Program\drivers\nrf5x_i2cSimu.c</FilePath>
+              <FilePath>..\Program\drivers\simui2c\nrf5x_i2cSimu.c</FilePath>
             </File>
           </Files>
         </Group>

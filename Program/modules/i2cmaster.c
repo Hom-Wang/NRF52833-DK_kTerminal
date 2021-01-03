@@ -14,7 +14,7 @@
 
 /* Includes --------------------------------------------------------------------------------*/
 #include "drivers\nrf5x_system.h"
-#include "drivers\nrf5x_i2cSimu.h"
+#include "drivers\simui2c\nrf5x_i2cSimu.h"
 
 #include "i2cmaster.h"
 
