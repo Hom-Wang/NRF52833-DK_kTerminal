@@ -26,7 +26,7 @@ extern "C" {
 #include "nrf5x_delay.h"
 
 #include "kitsprout\kLogger.h"
-#include "kitsprout\kserial\clang\kStatus.h"
+#include "kitsprout\kserial\kStatus.h"
 
 #include "boardConfig.h"
 

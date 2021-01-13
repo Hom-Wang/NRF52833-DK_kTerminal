@@ -16,7 +16,7 @@
 #include "drivers\nrf5x_system.h"
 #include "modules\serial.h"
 #include "modules\i2cmaster.h"
-#include "kitsprout\kserial\clang\kSerial.h"
+#include "kitsprout\kserial\kSerial.h"
 #include "nrf5x_bsp.h"
 
 /* Define ----------------------------------------------------------------------------------*/

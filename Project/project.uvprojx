@@ -481,12 +481,17 @@
             <File>
               <FileName>kSerial.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Program\kitsprout\kserial\clang\kSerial.c</FilePath>
+              <FilePath>..\Program\kitsprout\kserial\kSerial.c</FilePath>
             </File>
             <File>
               <FileName>kSerial.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Program\kitsprout\kserial\clang\kSerial.h</FilePath>
+              <FilePath>..\Program\kitsprout\kserial\kSerial.h</FilePath>
+            </File>
+            <File>
+              <FileName>kSerial_ReConf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Program\kitsprout\kSerial_ReConf.h</FilePath>
             </File>
           </Files>
         </Group>
