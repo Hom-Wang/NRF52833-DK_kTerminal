@@ -6,37 +6,43 @@
  *  /_/|_|/_/ \__//___// .__//_/   \___/\_,_/ \__/  
  *                    /_/   github.com/KitSprout    
  * 
- *  @file    nrf5x_bsp.h
+ *  @file    kTerminal.c
  *  @author  KitSprout
  *  @brief   
- * 
  */
 
 /* Define to prevent recursive inclusion ---------------------------------------------------*/
-#ifndef __NRF5X_BSP_H
-#define __NRF5X_BSP_H
+#ifndef __KTERMINAL_H
+#define __KTERMINAL_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /* Includes --------------------------------------------------------------------------------*/
-#include "drivers\nrf5x_system.h"
+#include <stdint.h>
+#include "kserial\kSerial.h"
 
 /* Define ----------------------------------------------------------------------------------*/
+
+//#define KLOGGER_PRINTF_SUPPORT                          (0U)
+//#define KLOGGER_BUFFER_INDEX                            (0U)
+//#define KLOGGER_JSCOPE_BUFFER_INDEX                     (1U)
+
 /* Macro -----------------------------------------------------------------------------------*/
+
+//#define klog_getkey()                                   SEGGER_RTT_GetKey()
+//#define klog_waitkey()                                  SEGGER_RTT_WaitKey()
+//#define klog_haskey()                                   SEGGER_RTT_HasKey()
+//#define klog_read(__DATA, __LENS)                       SEGGER_RTT_Read(KLOGGER_BUFFER_INDEX, __DATA, __LENS)
+//#define klog_write(__DATA, __LENS)                      SEGGER_RTT_Write(KLOGGER_BUFFER_INDEX, __DATA, __LENS)
+//#define klog_setTerminal(__IDX)                         SEGGER_RTT_SetTerminal(__IDX)
+
 /* Typedef ---------------------------------------------------------------------------------*/
 /* Extern ----------------------------------------------------------------------------------*/
 /* Functions -------------------------------------------------------------------------------*/
 
-void        bsp_system_information( device_info_t *ds );
-void        bsp_gpio_init( void );
-void        bsp_timer_init( pFunc event, uint32_t freq );
-void        bsp_timer_enable( uint32_t state );
-void        bsp_uart_serial_init( pFunc event );
-void        bsp_sensor_init( void );
-void        bsp_sensor_get_lsb( int16_t *lsb );
-void        bsp_sensor_get_raw( float *raw );
+uint32_t    kTerminal( uint32_t byte );
 
 #ifdef __cplusplus
 }

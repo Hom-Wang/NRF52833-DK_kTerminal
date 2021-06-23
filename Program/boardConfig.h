@@ -118,13 +118,106 @@ extern "C" {
 #define SERIAL_INTERRUPT_MODE                           NRF_UART_INT_MASK_RXDRDY
 
 
-/* -------- simulation i2c */
+/* -------- Rotary Encoder */
 
-#define TWI_SCL_PIN                                     27
-#define TWI_SCL_PORT                                    0
+#define RTEN_KEY_PIN                                    3
+#define RTEN_KEY_PORT                                   0
+#define RTEN_KEY_Read()                                 (__GPIO_READ(RTEN_KEY_PORT, RTEN_KEY_PIN) == RESET)
 
-#define TWI_SDA_PIN                                     26
-#define TWI_SDA_PORT                                    0
+#define RTEN_A_PIN                                      28
+#define RTEN_A_PORT                                     0
+#define RTEN_A_Read()                                   (__GPIO_READ(RTEN_A_PORT, RTEN_A_PIN) == RESET)
+
+#define RTEN_B_PIN                                      4
+#define RTEN_B_PORT                                     0
+#define RTEN_B_Read()                                   (__GPIO_READ(RTEN_B_PORT, RTEN_B_PIN) == RESET)
+
+
+/* -------- Inertial Sensor */
+
+#define IMU_CSM_PIN                                     4
+#define IMU_CSM_PORT                                    1
+#define IMU_CSM_H()                                     __GPIO_SET(IMU_CSM_PORT, IMU_CSM_PIN)
+#define IMU_CSM_L()                                     __GPIO_RST(IMU_CSM_PORT, IMU_CSM_PIN)
+
+#define IMU_SCK_PIN                                     5
+#define IMU_SCK_PORT                                    1
+
+#define IMU_SDI_PIN                                     6
+#define IMU_SDI_PORT                                    1
+
+#define IMU_SDO_PIN                                     7
+#define IMU_SDO_PORT                                    1
+#define IMU_SDO_H()                                     __GPIO_SET(IMU_SDO_PORT, IMU_SDO_PIN)
+#define IMU_SDO_L()                                     __GPIO_RST(IMU_SDO_PORT, IMU_SDO_PIN)
+
+#define IMU_INT_PIN                                     3
+#define IMU_INT_PORT                                    1
+
+#define IMU_SDA_PIN                                     1
+#define IMU_SDA_PORT                                    1
+
+#define IMU_SCL_PIN                                     2
+#define IMU_SCL_PORT                                    1
+
+
+/* -------- OLED */
+
+#define OLED_CS_PIN                                     8
+#define OLED_CS_PORT                                    0
+#define OLED_CS_H()                                     __GPIO_SET(OLED_CS_PORT, OLED_CS_PIN)
+#define OLED_CS_L()                                     __GPIO_RST(OLED_CS_PORT, OLED_CS_PIN)
+
+#define OLED_SCK_PIN                                    7
+#define OLED_SCK_PORT                                   0
+
+#define OLED_SDI_PIN                                    6
+#define OLED_SDI_PORT                                   0
+
+#define OLED_DC_PIN                                     9
+#define OLED_DC_PORT                                    0
+#define OLED_DC_H()                                     __GPIO_SET(OLED_DC_PORT, OLED_DC_PIN)
+#define OLED_DC_L()                                     __GPIO_RST(OLED_DC_PORT, OLED_DC_PIN)
+
+#define OLED_RST_PIN                                    10
+#define OLED_RST_PORT                                   0
+#define OLED_RST_H()                                    __GPIO_SET(OLED_RST_PORT, OLED_RST_PIN)
+#define OLED_RST_L()                                    __GPIO_RST(OLED_RST_PORT, OLED_RST_PIN)
+
+/* -------- Ultra-Wideband */
+
+#define UWB_CSD_PIN                                     17
+#define UWB_CSD_PORT                                    0
+
+#define UWB_SCK_PIN                                     21
+#define UWB_SCK_PORT                                    0
+
+#define UWB_SDI_PIN                                     19
+#define UWB_SDI_PORT                                    0
+
+#define UWB_SDO_PIN                                     20
+#define UWB_SDO_PORT                                    0
+
+#define UWB_IRQ_PIN                                     22
+#define UWB_IRQ_PORT                                    0
+
+#define UWB_RST_PIN                                     23
+#define UWB_RST_PORT                                    0
+
+#define UWB_WAK_PIN                                     2
+#define UWB_WAK_PORT                                    0
+
+#define UWB_EXT_PIN                                     26
+#define UWB_EXT_PORT                                    0
+
+
+/* -------- Simulation i2c */
+
+#define TWI_SCL_PIN                                     IMU_SCL_PIN
+#define TWI_SCL_PORT                                    IMU_SCL_PORT
+
+#define TWI_SDA_PIN                                     IMU_SDA_PIN
+#define TWI_SDA_PORT                                    IMU_SDA_PORT
 
 
 /* Macro -----------------------------------------------------------------------------------*/

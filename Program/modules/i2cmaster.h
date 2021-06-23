@@ -34,7 +34,7 @@ extern "C" {
 /* Prototypes ------------------------------------------------------------------------------*/
 /* Functions -------------------------------------------------------------------------------*/
 
-void        i2c_config( const uint8_t sclpin, const uint8_t sdapin, uint32_t freq );
+void        i2c_config( const uint8_t sclport, const uint8_t sclpin, const uint8_t sdaport, const uint8_t sdapin, uint32_t freq );
 
 void        i2c_delay( uint32_t milliseconds );
 void        i2c_delay_us( uint32_t milliseconds );

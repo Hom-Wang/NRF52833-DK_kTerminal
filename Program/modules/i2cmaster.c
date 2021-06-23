@@ -31,12 +31,12 @@ static SimuI2C_InitTypeDef hi2c;
 /**
  *  @brief  i2c_config
  */
-void i2c_config( const uint8_t sclpin, const uint8_t sdapin, uint32_t freq )
+void i2c_config( const uint8_t sclport, const uint8_t sclpin, const uint8_t sdaport, const uint8_t sdapin, uint32_t freq )
 {
     hi2c.PinSCL    = sclpin;
-    hi2c.PortSCL   = 0;
+    hi2c.PortSCL   = sclport;
     hi2c.PinSDA    = sdapin;
-    hi2c.PortSDA   = 0;
+    hi2c.PortSDA   = sdaport;
     hi2c.Frequency = freq;
     SimuI2C_Config(&hi2c);
 }
