@@ -210,8 +210,8 @@ extern "C" {
 
 /* -------- Ultra-Wideband */
 
-#define UWB_CSD_PIN                                     17
-#define UWB_CSD_PORT                                    0
+#define UWB_CSN_PIN                                     17
+#define UWB_CSN_PORT                                    0
 
 #define UWB_SCK_PIN                                     21
 #define UWB_SCK_PORT                                    0

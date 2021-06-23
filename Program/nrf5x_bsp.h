@@ -37,6 +37,7 @@ void        bsp_uart_serial_init( pFunc event );
 void        bsp_sensor_init( void );
 void        bsp_sensor_get_lsb( int16_t *lsb );
 void        bsp_sensor_get_raw( float *raw );
+void        bsp_uwb_init( void );
 
 #ifdef __cplusplus
 }

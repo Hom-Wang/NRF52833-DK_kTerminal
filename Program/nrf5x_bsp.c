@@ -20,6 +20,10 @@
 #include "modules\serial.h"
 #include "modules\icm42688.h"
 #include "modules\ist8308.h"
+
+#include "decadriver\deca_port.h"
+#include "decadriver\deca_device_api.h"
+
 #include "nrf5x_bsp.h"
 
 /* Define ----------------------------------------------------------------------------------*/
@@ -191,6 +195,37 @@ void bsp_sensor_get_raw( float *raw )
     raw[7] = lsb[7] * magSensitivity;   // mag.y
     raw[8] = lsb[8] * magSensitivity;   // mag.z
     raw[9] = lsb[9] / 132.48f + 25;     // temp
+}
+
+void bsp_uwb_init( void )
+{
+    dwt_config_t config =
+    {
+        5,                  /* Channel number. */
+        DWT_PRF_64M,        /* Pulse repetition frequency. */
+        DWT_PLEN_128,       /* Preamble length. Used in TX only. */
+        DWT_PAC8,           /* Preamble acquisition chunk size. Used in RX only. */
+        10,                 /* TX preamble code. Used in TX only. */
+        10,                 /* RX preamble code. Used in RX only. */
+        0,                  /* 0 to use standard SFD, 1 to use non-standard SFD. */
+        DWT_BR_6M8,         /* Data rate. */
+        DWT_PHRMODE_STD,    /* PHY header mode. */
+        (129 + 8 - 8)       /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
+    };
+
+    // Setup and reset DW1000
+    dw1000_setup();
+    // Configure DW1000
+    klogd("bsp uwb init ... ");
+    if (dw1000_init(&config) != DWT_SUCCESS)
+    {
+        
+        klogd("failed\n");
+    }
+    else
+    {
+        klogd("ok\n");
+    }
 }
 
 /*************************************** END OF FILE ****************************************/

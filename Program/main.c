@@ -50,7 +50,8 @@ void bsp_init( void )
     bsp_timer_init(event_timer_tick, TICK_FREQ);
     bsp_uart_serial_init(event_uart_serial_recv);
     bsp_sensor_init();
-
+    bsp_uwb_init();
+    klogd("\n");
     bsp_timer_enable(ENABLE);
 }
 

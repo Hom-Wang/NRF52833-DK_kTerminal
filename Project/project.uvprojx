@@ -429,6 +429,11 @@
               <FilePath>..\Program\drivers\nrf5x_uart.c</FilePath>
             </File>
             <File>
+              <FileName>nrf5x_spim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\drivers\nrf5x_spim.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf5x_i2cSimu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Program\drivers\simui2c\nrf5x_i2cSimu.c</FilePath>
@@ -487,6 +492,26 @@
               <FileName>ist8308.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Program\modules\ist8308.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>decadriver</GroupName>
+          <Files>
+            <File>
+              <FileName>deca_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\decadriver\deca_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>deca_device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\decadriver\deca_device.c</FilePath>
+            </File>
+            <File>
+              <FileName>deca_params_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\decadriver\deca_params_init.c</FilePath>
             </File>
           </Files>
         </Group>
