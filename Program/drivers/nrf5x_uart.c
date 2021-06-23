@@ -89,13 +89,13 @@ void UART_Cmd( UART_InitTypeDef *huart, uint32_t state )
  */
 void UART_InterruptCmd( UART_InitTypeDef *huart, uint32_t mode, uint32_t state )
 {
-    if (state == ENABLE)
+    if (state != ENABLE)
     {
-        huart->Instance->INTENSET = mode;
+        huart->Instance->INTENCLR = mode;
     }
     else
     {
-        huart->Instance->INTENCLR = mode;
+        huart->Instance->INTENSET = mode;
     }
 }
 

@@ -16,6 +16,7 @@
 #include "drivers\nrf5x_system.h"
 #include "drivers\nrf5x_clock.h"
 #include "drivers\nrf5x_timer.h"
+#include "modules\encoder.h"
 #include "modules\serial.h"
 #include "modules\icm42688.h"
 #include "modules\ist8308.h"
@@ -64,6 +65,9 @@ void bsp_gpio_init( void )
     nrf_gpio_cfg_input(NRF_GPIO_PIN_MAP(KEY_2_PORT, KEY_2_PIN), NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_input(NRF_GPIO_PIN_MAP(KEY_3_PORT, KEY_3_PIN), NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_input(NRF_GPIO_PIN_MAP(KEY_4_PORT, KEY_4_PIN), NRF_GPIO_PIN_PULLUP);
+
+    Encoder_Config();
+    Encoder_Cmd(ENABLE);
 }
 
 void bsp_timer_init( pFunc event, uint32_t freq )

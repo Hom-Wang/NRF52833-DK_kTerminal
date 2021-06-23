@@ -16,6 +16,7 @@
 #include "drivers\nrf5x_system.h"
 #include "drivers\nrf5x_timer.h"
 #include "modules\serial.h"
+#include "modules\encoder.h"
 
 /* Define ----------------------------------------------------------------------------------*/
 /* Macro -----------------------------------------------------------------------------------*/
@@ -58,7 +59,22 @@ void SERIAL_UARTx_IRQHANDLER( void )
 //void SPIM3_IRQHandler( void )
 
 //void NFCT_IRQHandler( void )
+
 //void GPIOTE_IRQHandler( void )
+void RTEN_GPIOTEx_IRQHANDLER( void )
+{
+    if (GPIOTE_EVENTS_IN(hencoderA.Instance, hencoderA.Line) != RESET)
+    {
+        GPIOTE_EVENTS_IN(hencoderA.Instance, hencoderA.Line) = RESET;
+        hencoderA.EventCallback();
+    }
+    if (GPIOTE_EVENTS_IN(hencoderB.Instance, hencoderB.Line) != RESET)
+    {
+        GPIOTE_EVENTS_IN(hencoderB.Instance, hencoderB.Line) = RESET;
+        hencoderB.EventCallback();
+    }
+}
+
 //void SAADC_IRQHandler( void )
 
 //void TIMER0_IRQHandler( void )

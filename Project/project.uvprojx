@@ -414,6 +414,11 @@
               <FilePath>..\Program\drivers\nrf5x_delay.c</FilePath>
             </File>
             <File>
+              <FileName>nrf5x_gpiote.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\drivers\nrf5x_gpiote.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf5x_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Program\drivers\nrf5x_timer.c</FilePath>
@@ -458,6 +463,11 @@
         <Group>
           <GroupName>modules</GroupName>
           <Files>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Program\modules\encoder.c</FilePath>
+            </File>
             <File>
               <FileName>serial.c</FileName>
               <FileType>1</FileType>
@@ -543,7 +553,7 @@
   <LayerInfo>
     <Layers>
       <Layer>
-        <LayName>&lt;Project Info&gt;</LayName>
+        <LayName>project</LayName>
         <LayTarg>0</LayTarg>
         <LayPrjMark>1</LayPrjMark>
       </Layer>

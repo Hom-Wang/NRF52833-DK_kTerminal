@@ -120,17 +120,35 @@ extern "C" {
 
 /* -------- Rotary Encoder */
 
+#define RTEN_GPIOTEx                                    NRF_GPIOTE
+#define RTEN_GPIOTEx_IRQn                               GPIOTE_IRQn
+#define RTEN_GPIOTEx_IRQHANDLER                         GPIOTE_IRQHandler
+#define RTEN_GPIOTEx_IRQn_PRIORITY                      1
+#define RTEN_GPIOTEx_POLARITY                           NRF_GPIOTE_POLARITY_TOGGLE
+#define RTEN_GPIOTEx_MODE                               GPIOTE_CONFIG_MODE_Event
+#define RTEN_GPIOTEx_OUTINIT                            NRF_GPIOTE_INITIAL_VALUE_HIGH
+
 #define RTEN_KEY_PIN                                    3
 #define RTEN_KEY_PORT                                   0
 #define RTEN_KEY_Read()                                 (__GPIO_READ(RTEN_KEY_PORT, RTEN_KEY_PIN) == RESET)
 
 #define RTEN_A_PIN                                      28
 #define RTEN_A_PORT                                     0
-#define RTEN_A_Read()                                   (__GPIO_READ(RTEN_A_PORT, RTEN_A_PIN) == RESET)
+#define RTEN_A_Read()                                   (__GPIO_READ(RTEN_A_PORT, RTEN_A_PIN) == SET)
+#define RTEN_A_GPIOTEx_LINE                             0
 
 #define RTEN_B_PIN                                      4
 #define RTEN_B_PORT                                     0
-#define RTEN_B_Read()                                   (__GPIO_READ(RTEN_B_PORT, RTEN_B_PIN) == RESET)
+#define RTEN_B_Read()                                   (__GPIO_READ(RTEN_B_PORT, RTEN_B_PIN) == SET)
+#define RTEN_B_GPIOTEx_LINE                             1
+
+/* -------- Simulation i2c */
+
+#define TWI_SCL_PIN                                     IMU_SCL_PIN
+#define TWI_SCL_PORT                                    IMU_SCL_PORT
+
+#define TWI_SDA_PIN                                     IMU_SDA_PIN
+#define TWI_SDA_PORT                                    IMU_SDA_PORT
 
 
 /* -------- Inertial Sensor */
@@ -139,6 +157,11 @@ extern "C" {
 #define IMU_CSM_PORT                                    1
 #define IMU_CSM_H()                                     __GPIO_SET(IMU_CSM_PORT, IMU_CSM_PIN)
 #define IMU_CSM_L()                                     __GPIO_RST(IMU_CSM_PORT, IMU_CSM_PIN)
+
+#define IMU_CSB_PIN                                     8
+#define IMU_CSB_PORT                                    1
+#define IMU_CSB_H()                                     __GPIO_SET(IMU_CSB_PORT, IMU_CSB_PIN)
+#define IMU_CSB_L()                                     __GPIO_RST(IMU_CSB_PORT, IMU_CSB_PIN)
 
 #define IMU_SCK_PIN                                     5
 #define IMU_SCK_PORT                                    1
@@ -184,6 +207,7 @@ extern "C" {
 #define OLED_RST_H()                                    __GPIO_SET(OLED_RST_PORT, OLED_RST_PIN)
 #define OLED_RST_L()                                    __GPIO_RST(OLED_RST_PORT, OLED_RST_PIN)
 
+
 /* -------- Ultra-Wideband */
 
 #define UWB_CSD_PIN                                     17
@@ -209,15 +233,6 @@ extern "C" {
 
 #define UWB_EXT_PIN                                     26
 #define UWB_EXT_PORT                                    0
-
-
-/* -------- Simulation i2c */
-
-#define TWI_SCL_PIN                                     IMU_SCL_PIN
-#define TWI_SCL_PORT                                    IMU_SCL_PORT
-
-#define TWI_SDA_PIN                                     IMU_SDA_PIN
-#define TWI_SDA_PORT                                    IMU_SDA_PORT
 
 
 /* Macro -----------------------------------------------------------------------------------*/

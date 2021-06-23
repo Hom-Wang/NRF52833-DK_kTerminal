@@ -14,6 +14,7 @@
 
 /* Includes --------------------------------------------------------------------------------*/
 #include "drivers\nrf5x_system.h"
+#include "modules\encoder.h"
 #include "modules\serial.h"
 #include "modules\i2cmaster.h"
 #include "modules\ist8308.h"
@@ -55,6 +56,8 @@ void bsp_init( void )
 
 int main( void )
 {
+    int32_t rotaryCounter = 0;
+
     bsp_init();
     i2c_config(TWI_SCL_PORT, TWI_SCL_PIN, TWI_SDA_PORT, TWI_SDA_PIN, 5);    // 400kHz
 
@@ -87,6 +90,22 @@ int main( void )
                     raw[9]);
 #endif
             }
+
+            int32_t rotary = Encoder_GetRotary(&rotaryCounter);
+            int32_t button = RTEN_KEY_Read();
+            if (button)
+            {
+                LED_4_On();
+            }
+            else
+            {
+                LED_4_Off();
+            }
+            if (rotary != 0)
+            {
+                klogd("Rotary Encoder, step %2d, push %d, step counter %d\n", rotary, button, rotaryCounter);
+            }
+
         }
     }
 }
