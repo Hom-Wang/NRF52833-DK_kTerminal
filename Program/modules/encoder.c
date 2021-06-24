@@ -56,8 +56,7 @@ void Encoder_Config( void )
     // interrupt
     hencoderA.Instance   = RTEN_GPIOTEx;
     hencoderA.Line       = RTEN_A_GPIOTEx_LINE;
-    hencoderA.Pin        = RTEN_A_PIN;
-    hencoderA.Port       = RTEN_A_PORT;
+    hencoderA.Pin        = NRF_GPIO_PIN_MAP(RTEN_A_PORT, RTEN_A_PIN);
     hencoderA.Mode       = RTEN_GPIOTEx_MODE;
     hencoderA.Polarity   = RTEN_GPIOTEx_POLARITY;
     hencoderA.OutInit    = RTEN_GPIOTEx_OUTINIT;
@@ -65,8 +64,7 @@ void Encoder_Config( void )
 
     hencoderB.Instance   = RTEN_GPIOTEx;
     hencoderB.Line       = RTEN_B_GPIOTEx_LINE;
-    hencoderB.Pin        = RTEN_B_PIN;
-    hencoderB.Port       = RTEN_B_PORT;
+    hencoderB.Pin        = NRF_GPIO_PIN_MAP(RTEN_B_PORT, RTEN_B_PIN);
     hencoderB.Mode       = RTEN_GPIOTEx_MODE;
     hencoderB.Polarity   = RTEN_GPIOTEx_POLARITY;
     hencoderB.OutInit    = RTEN_GPIOTEx_OUTINIT;

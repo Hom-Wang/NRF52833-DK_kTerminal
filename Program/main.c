@@ -55,10 +55,39 @@ void bsp_init( void )
     bsp_timer_enable(ENABLE);
 }
 
+int32_t rotaryCounter = 0;
+void rotary_demo( void )
+{
+    int32_t rotary = Encoder_GetRotary(&rotaryCounter);
+    int32_t button = RTEN_KEY_Read();
+    if (button)
+    {
+        LED_4_On();
+    }
+    else
+    {
+        LED_4_Off();
+    }
+    if (rotary != 0)
+    {
+        klogd("Rotary Encoder, step %2d, push %d, step counter %d\n", rotary, button, rotaryCounter);
+        printf("Rotary Encoder, step %2d, push %d, step counter %d\n", rotary, button, rotaryCounter);
+    }
+}
+
+void sensor_log( void )
+{
+    float raw[10] = {0};
+    bsp_sensor_get_raw(raw);
+    klogd("[G] %7.3f %7.3f %7.3f [A] %7.3f %7.3f %7.3f [M] %7.2f %7.2f %7.2f [T] %.2f\n",
+        raw[0], raw[1], raw[2],
+        raw[3], raw[4], raw[5],
+        raw[6], raw[7], raw[8],
+        raw[9]);
+}
+
 int main( void )
 {
-    int32_t rotaryCounter = 0;
-
     bsp_init();
     i2c_config(TWI_SCL_PORT, TWI_SCL_PIN, TWI_SDA_PORT, TWI_SDA_PIN, 5);    // 400kHz
 
@@ -69,43 +98,30 @@ int main( void )
             tick = 0;
             LED_1_Toggle();
 
-            if (dv.mode)
+            switch (dv.mode)
             {
-                LED_2_Toggle();
-                int16_t lsb[12] = {0};
-                lsb[0] = sec;
-                lsb[1] = msc * (1000.0f / TICK_FREQ);
-                bsp_sensor_get_lsb(&lsb[2]);
-                kSerial_SendPacket(NULL, lsb, 12, KS_I16);
-            }
-            else
-            {
-                LED_2_Off();
-#if 0
-                float raw[10] = {0};
-                bsp_sensor_get_raw(raw);
-                klogd("[G] %7.3f %7.3f %7.3f [A] %7.3f %7.3f %7.3f [M] %7.2f %7.2f %7.2f [T] %.2f\n",
-                    raw[0], raw[1], raw[2],
-                    raw[3], raw[4], raw[5],
-                    raw[6], raw[7], raw[8],
-                    raw[9]);
-#endif
+                case 1:
+                {
+                    LED_2_Toggle();
+                    int16_t lsb[12] = {0};
+                    lsb[0] = sec;
+                    lsb[1] = msc * (1000.0f / TICK_FREQ);
+                    bsp_sensor_get_lsb(&lsb[2]);
+                    kSerial_SendPacket(NULL, lsb, 12, KS_I16);
+                }
+                case 2:
+                {
+                    LED_2_Off();
+                    rotary_demo();
+                }
+                default:
+                {
+                    LED_2_Off();
+//                    sensor_log();
+                }
             }
 
-            int32_t rotary = Encoder_GetRotary(&rotaryCounter);
-            int32_t button = RTEN_KEY_Read();
-            if (button)
-            {
-                LED_4_On();
-            }
-            else
-            {
-                LED_4_Off();
-            }
-            if (rotary != 0)
-            {
-                klogd("Rotary Encoder, step %2d, push %d, step counter %d\n", rotary, button, rotaryCounter);
-            }
+
 
         }
     }

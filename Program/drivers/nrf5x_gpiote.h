@@ -42,10 +42,8 @@ typedef struct
 
     uint8_t Line;
     // Line 0-7
-    uint32_t Port;
-    // Pin 0-1
     uint32_t Pin;
-    // Pin 0-31
+    // Port 0-1, Pin 0-31
     uint32_t Mode;
     // GPIOTE_CONFIG_MODE_Disabled - Disabled.
     // GPIOTE_CONFIG_MODE_Event    - Channel configure in event mode.

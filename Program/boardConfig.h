@@ -142,6 +142,7 @@ extern "C" {
 #define RTEN_B_Read()                                   (__GPIO_READ(RTEN_B_PORT, RTEN_B_PIN) == SET)
 #define RTEN_B_GPIOTEx_LINE                             1
 
+
 /* -------- Simulation i2c */
 
 #define TWI_SCL_PIN                                     IMU_SCL_PIN
@@ -186,6 +187,15 @@ extern "C" {
 
 /* -------- OLED */
 
+#define OLED_SPIMx                                      NRF_SPIM1
+#define OLED_SPIMx_IRQn                                 SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQn
+#define OLED_SPIMx_IRQHANDLER                           SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler
+#define OLED_SPIMx_IRQn_PRIORITY                        1
+
+#define OLED_SPIMx_BITORDER                             NRF_SPIM_BIT_ORDER_MSB_FIRST
+#define OLED_SPIMx_MODE                                 NRF_SPIM_MODE_0
+#define OLED_SPIMx_RATE                                 NRF_SPIM_FREQ_2M
+
 #define OLED_CS_PIN                                     8
 #define OLED_CS_PORT                                    0
 #define OLED_CS_H()                                     __GPIO_SET(OLED_CS_PORT, OLED_CS_PIN)
@@ -193,9 +203,16 @@ extern "C" {
 
 #define OLED_SCK_PIN                                    7
 #define OLED_SCK_PORT                                   0
+#define OLED_SCK_H()                                    __GPIO_SET(OLED_SCK_PORT, OLED_SCK_PIN)
+#define OLED_SCK_L()                                    __GPIO_RST(OLED_SCK_PORT, OLED_SCK_PIN)
 
 #define OLED_SDI_PIN                                    6
 #define OLED_SDI_PORT                                   0
+#define OLED_SDI_H()                                    __GPIO_SET(OLED_SDI_PORT, OLED_SDI_PIN)
+#define OLED_SDI_L()                                    __GPIO_RST(OLED_SDI_PORT, OLED_SDI_PIN)
+
+#define OLED_SDO_PIN                                    0xFF
+#define OLED_SDO_PORT                                   0
 
 #define OLED_DC_PIN                                     9
 #define OLED_DC_PORT                                    0
@@ -209,6 +226,16 @@ extern "C" {
 
 
 /* -------- Ultra-Wideband */
+
+//#define UWB_SPIMx                                       NRF_SPIM0
+#define UWB_SPIMx_IRQn                                  SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQn
+#define UWB_SPIMx_IRQHANDLER                            SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler
+#define UWB_SPIMx_IRQn_PRIORITY                         1
+
+#define UWB_SPIMx_BITORDER                              NRF_SPIM_BIT_ORDER_MSB_FIRST
+#define UWB_SPIMx_MODE                                  NRF_SPIM_MODE_0
+#define UWB_SPIMx_SLOW_RATE                             NRF_SPIM_FREQ_2M
+#define UWB_SPIMx_FAST_RATE                             NRF_SPIM_FREQ_8M
 
 #define UWB_CSN_PIN                                     17
 #define UWB_CSN_PORT                                    0

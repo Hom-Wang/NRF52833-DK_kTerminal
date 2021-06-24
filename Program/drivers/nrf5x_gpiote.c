@@ -27,8 +27,7 @@
  */
 void GPIOTE_Init( GPIOTE_InitTypeDef *hgpiotex )
 {
-    hgpiotex->Instance->CONFIG[hgpiotex->Line] = (hgpiotex->Port     << GPIOTE_CONFIG_PORT_Pos) |
-                                                 (hgpiotex->Pin      << GPIOTE_CONFIG_PSEL_Pos) | 
+    hgpiotex->Instance->CONFIG[hgpiotex->Line] = (hgpiotex->Pin      << GPIOTE_CONFIG_PSEL_Pos) | 
                                                  (hgpiotex->Mode     << GPIOTE_CONFIG_MODE_Pos) | 
                                                  (hgpiotex->Polarity << GPIOTE_CONFIG_POLARITY_Pos) | 
                                                  (hgpiotex->OutInit  << GPIOTE_CONFIG_OUTINIT_Pos);
