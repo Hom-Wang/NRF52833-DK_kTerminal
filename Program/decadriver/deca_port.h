@@ -18,27 +18,23 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
- #include <string.h>
-
 #include "drivers\nrf5x_system.h"
-
 #include "deca_device_api.h"
 
 
 #define reset_DW1000                                    dw1000_reset
 #define setup_DW1000RSTnIRQ                             dw1000_setirq
 
-#ifndef DW1000_SPIMx
+#ifndef UWB_SPIMx
 #define DW1000_SPIMx                                    NRF_SPIM0
-#define DW1000_SPIMx_IRQn                               SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQn
-#define DW1000_SPIMx_IRQHANDLER                         SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler
-#define DW1000_SPIMx_IRQn_PRIORITY                      1
+#define DW1000_SPIMx_IRQn                               UWB_SPIMx_IRQn
+#define DW1000_SPIMx_IRQHANDLER                         UWB_SPIMx_IRQHANDLER
+#define DW1000_SPIMx_IRQn_PRIORITY                      UWB_SPIMx_IRQn_PRIORITY
 
-#define DW1000_SPIMx_BITORDER                           NRF_SPIM_BIT_ORDER_MSB_FIRST
-#define DW1000_SPIMx_MODE                               NRF_SPIM_MODE_0
-#define DW1000_SPIMx_SLOW_RATE                          NRF_SPIM_FREQ_2M
-#define DW1000_SPIMx_FAST_RATE                          NRF_SPIM_FREQ_8M
+#define DW1000_SPIMx_BITORDER                           UWB_SPIMx_BITORDER
+#define DW1000_SPIMx_MODE                               UWB_SPIMx_MODE
+#define DW1000_SPIMx_SLOW_RATE                          UWB_SPIMx_SLOW_RATE
+#define DW1000_SPIMx_FAST_RATE                          UWB_SPIMx_FAST_RATE
 
 #define DW1000_CSN_PIN                                  UWB_CSN_PIN
 #define DW1000_CSN_PORT                                 UWB_CSN_PORT

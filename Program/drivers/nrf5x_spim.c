@@ -49,19 +49,32 @@ void SPIM_Init( SPIM_InitTypeDef *hspim )
         NRF_GPIO_PIN_S0S1,
         NRF_GPIO_PIN_NOSENSE
     );
+    hspim->Instance->PSELSCK = hspim->PinSCK;
 
     // mosi
-    nrf_gpio_pin_clear(hspim->PinMOSI);
-    nrf_gpio_cfg_output(hspim->PinMOSI);
+    if ((hspim->PinMOSI & 0xFF) != 0xFF)
+    {
+        nrf_gpio_pin_clear(hspim->PinMOSI);
+        nrf_gpio_cfg_output(hspim->PinMOSI);
+        hspim->Instance->PSELMOSI = hspim->PinMOSI;
+    }
+    else
+    {
+        hspim->Instance->PSELMOSI = 0x80000000;
+    }
 
     // miso
-    nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_NOPULL);
-    //nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_PULLDOWN);
-    //nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_PULLUP);
-
-    hspim->Instance->PSELSCK   = hspim->PinSCK;
-    hspim->Instance->PSELMOSI  = hspim->PinMOSI;
-    hspim->Instance->PSELMISO  = hspim->PinMISO;
+    if ((hspim->PinMOSI & 0xFF) != 0xFF)
+    {
+        nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_NOPULL);
+        //nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_PULLDOWN);
+        //nrf_gpio_cfg_input(hspim->PinMISO, NRF_GPIO_PIN_PULLUP);
+        hspim->Instance->PSELMISO = hspim->PinMISO;
+    }
+    else
+    {
+        hspim->Instance->PSELMISO = 0x80000000;
+    }
     hspim->Instance->FREQUENCY = hspim->Freguency;
 
     config = hspim->BitOrder << SPIM_CONFIG_ORDER_Pos;

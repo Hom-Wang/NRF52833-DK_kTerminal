@@ -20,9 +20,7 @@
 #include "modules\serial.h"
 #include "modules\icm42688.h"
 #include "modules\ist8308.h"
-
-#include "decadriver\deca_port.h"
-#include "decadriver\deca_device_api.h"
+#include "modules\dw1000.h"
 
 #include "nrf5x_bsp.h"
 
@@ -213,18 +211,17 @@ void bsp_uwb_init( void )
         (129 + 8 - 8)       /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
     };
 
-    // Setup and reset DW1000
     dw1000_setup();
-    // Configure DW1000
     klogd("bsp uwb init ... ");
     if (dw1000_init(&config) != DWT_SUCCESS)
     {
-        
         klogd("failed\n");
     }
     else
     {
         klogd("ok\n");
+        dwt_setrxantennadelay(UWB_RX_ANT_DELAY);
+        dwt_settxantennadelay(UWB_TX_ANT_DELAY);
     }
 }
 

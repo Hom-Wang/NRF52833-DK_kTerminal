@@ -17,7 +17,6 @@
 #include "modules\encoder.h"
 #include "modules\serial.h"
 #include "modules\i2cmaster.h"
-#include "modules\ist8308.h"
 #include "kitsprout\kTerminal.h"
 #include "nrf5x_bsp.h"
 
@@ -50,7 +49,6 @@ void bsp_init( void )
     bsp_timer_init(event_timer_tick, TICK_FREQ);
     bsp_uart_serial_init(event_uart_serial_recv);
     bsp_sensor_init();
-    bsp_uwb_init();
     klogd("\n");
     bsp_timer_enable(ENABLE);
 }

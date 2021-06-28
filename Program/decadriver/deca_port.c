@@ -11,6 +11,7 @@
  * @author DecaWave
  */
 
+#include <string.h>
 #include "drivers\nrf5x_spim.h"
 
 #include "deca_port.h"
@@ -24,9 +25,10 @@ static SPIM_InitTypeDef hdw1000;
  */
 void dw1000_setup(void)
 {
-    setup_DW1000RSTnIRQ(DISABLE);
-    reset_DW1000();
+    dw1000_setirq(DISABLE);
+    dw1000_reset();
     dw1000_spi_open();
+    deca_sleep(10);
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
@@ -38,8 +40,8 @@ uint32_t dw1000_init(dwt_config_t *config)
     uint32_t status;
     // set low rate spi to initialize
     dw1000_spi_slowrate();
-#if 1
-    printf("dwt_readdevid = 0x%08X\n", (uint32_t)dwt_readdevid());
+#if 0
+    klogd("dwt_readdevid = 0x%08X\n", (uint32_t)dwt_readdevid());
 #endif
     // initialize DW1000
     status = dwt_initialise(DWT_LOADUCODE);
@@ -96,7 +98,7 @@ void dw1000_setirq(int enable)
 void dw1000_spi_slowrate(void)
 {
     SPIM_SetFrequency(&hdw1000, DW1000_SPIMx_SLOW_RATE);
-    delay_ms(2);
+    deca_sleep(2);
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
@@ -106,7 +108,7 @@ void dw1000_spi_slowrate(void)
 void dw1000_spi_fastrate(void)
 {
     SPIM_SetFrequency(&hdw1000, DW1000_SPIMx_FAST_RATE);
-    delay_ms(2);
+    deca_sleep(2);
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
