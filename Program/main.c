@@ -106,16 +106,19 @@ int main( void )
                     lsb[1] = msc * (1000.0f / TICK_FREQ);
                     bsp_sensor_get_lsb(&lsb[2]);
                     kSerial_SendPacket(NULL, lsb, 12, KS_I16);
+                    break;
                 }
                 case 2:
                 {
                     LED_2_Off();
                     rotary_demo();
+                    break;
                 }
                 default:
                 {
                     LED_2_Off();
 //                    sensor_log();
+                    break;
                 }
             }
 
